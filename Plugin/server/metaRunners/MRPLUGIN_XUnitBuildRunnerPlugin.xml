@@ -4,13 +4,13 @@
   <settings>
     <parameters>
       <!-- Mandatory Fields -->
-      <param name="teamcity.tool.xunit.runner.testDlls" value="" spec="text description='Path to assembly files' display='normal' label='Run Tests From' validationMode='not_empty'" />
+      <param name="teamcity.tool.xunit.runner.testDlls" value="" spec="text description='Regular expression to match tes' display='normal' label='Run Tests From' validationMode='not_empty'" />
 	  <param name="teamcity.tool.xunit.runner.category" value="" spec="text description='Category of tests to run' display='normal' label='Run Test Category' validationMode='not_empty'" />
     </parameters>
     <build-runners>
       <runner name="" type="simpleRunner">
         <parameters>
-          <param name="script.content" value="&quot;%teamcity.agent.tools.dir%\xunit-build-runner\bin\xunit.console.exe&quot; &quot;%teamcity.tool.xunit.runner.testDlls%&quot; -teamcity -parallel all -trait category=&quot;%teamcity.tool.xunit.runner.category%&quot;" />
+          <param name="script.content" value="powershell -ExecutionPolicy ByPass -File &quot;%teamcity.agent.tools.dir%\xunit-build-runner\bin\test.ps1&quot; &quot;%teamcity.tool.xunit.runner.testDlls%&quot; &quot;%teamcity.tool.xunit.runner.category%&quot;" />
           <param name="teamcity.step.mode" value="default" />
           <param name="use.custom.script" value="true" />
         </parameters>
